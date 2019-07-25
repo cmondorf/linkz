@@ -48,4 +48,12 @@ public class Link {
     public int getPoints() {
         return points;
     }
+
+    public void upvote() {
+        this.points++;
+    }
+
+    public void downvote() {
+        this.points--;
+    }
 }

@@ -20,12 +20,25 @@
                     Vielen Dank für deinen tollen Link!
                 </div>
             </article>
+            <article class="message is-success" th:if="${voted}">
+                <div class="message-body">
+                    Vielen Dank für deine Stimme!
+                </div>
+            </article>
             <div class="box" th:each="link : ${links}">
                 <article class="media">
                     <div class="media-left">
                         <div class="field">
-                            <button class="button is-small is-fullwidth">▲</button>
-                            <button class="button is-small is-fullwidth">▼</button>
+                            <form th:action="@{/vote}" method="post">
+                                <input type="hidden" name="linkId" th:value="${link.id}">
+                                <input type="hidden" name="up" th:value="${true}">
+                                <button type="submit" class="button is-small is-fullwidth">▲</button>
+                            </form>
+                            <form th:action="@{/vote}" method="post">
+                                <input type="hidden" name="linkId" th:value="${link.id}">
+                                <input type="hidden" name="up" th:value="${false}">
+                                <button type="submit" class="button is-small is-fullwidth">▼</button>
+                            </form>
                         </div>
                     </div>
                     <div class="media-content">

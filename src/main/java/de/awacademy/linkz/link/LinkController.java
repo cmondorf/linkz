@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -38,6 +39,23 @@ public class LinkController {
         linkRepository.save(link);
 
         redirectAttributes.addAttribute("linkSubmitted", true);
+        return "redirect:/";
+    }
+
+    @PostMapping("/vote")
+    public String upvote(VoteDTO voteDTO, RedirectAttributes redirectAttributes) {
+        Link link = linkRepository.findById(voteDTO.getLinkId()).orElseThrow();
+
+        if (voteDTO.isUp()) {
+            link.upvote();
+        }
+        else {
+            link.downvote();
+        }
+
+        linkRepository.save(link);
+
+        redirectAttributes.addAttribute("voted", true);
         return "redirect:/";
     }
 }
