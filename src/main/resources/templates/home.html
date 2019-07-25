@@ -15,6 +15,11 @@
                     <a th:href="@{/submit}">Link posten</a>
                 </div>
             </nav>
+            <article class="message is-success" th:if="${linkSubmitted}">
+                <div class="message-body">
+                    Vielen Dank für deinen tollen Link!
+                </div>
+            </article>
             <div class="box" th:each="link : ${links}">
                 <article class="media">
                     <div class="media-left">

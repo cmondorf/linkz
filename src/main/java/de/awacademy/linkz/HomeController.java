@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
@@ -17,8 +18,9 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String home(Model model) {
+    public String home(Model model, @RequestParam(defaultValue = "false") boolean linkSubmitted) {
         model.addAttribute("links", linkRepository.findAllByOrderByPointsDesc());
+        model.addAttribute("linkSubmitted", linkSubmitted);
         return "home";
     }
 }
