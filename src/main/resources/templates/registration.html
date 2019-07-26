@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Linkz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+</head>
+<body>
+<section class="section">
+    <div class="container">
+        <h1 class="title">Registrieren</h1>
+        <nav class="level">
+            <div class="level-left">
+                <a th:href="@{/}">Zurück</a>
+            </div>
+        </nav>
+        <div class="box">
+            <form th:action="@{/register}" th:object="${registration}" method="post">
+                <div class="field">
+                    <label class="label">Username</label>
+                    <div class="control">
+                        <input class="input" type="text" required
+                               th:classappend="${#fields.hasErrors('username') ? 'is-danger' : ''}"
+                               th:field="*{username}">
+                    </div>
+                    <p class="help is-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+                </div>
+                <div class="field">
+                    <label class="label">Passswort</label>
+                    <div class="control">
+                        <input class="input" type="password" required
+                               th:classappend="${#fields.hasErrors('password1') ? 'is-danger' : ''}"
+                               th:field="*{password1}">
+                    </div>
+                    <p class="help is-danger" th:if="${#fields.hasErrors('password1')}" th:errors="*{password1}"></p>
+                </div>
+                <div class="field">
+                    <label class="label">Passswort wiederholen</label>
+                    <div class="control">
+                        <input class="input" type="password" required
+                               th:classappend="${#fields.hasErrors('password2') ? 'is-danger' : ''}"
+                               th:field="*{password2}">
+                    </div>
+                    <p class="help is-danger" th:if="${#fields.hasErrors('password2')}" th:errors="*{password2}"></p>
+                </div>
+                <div class="control">
+                    <button class="button is-primary" type="submit">Abschicken</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>

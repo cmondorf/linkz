@@ -16,6 +16,7 @@
         <div class="navbar-menu is-active">
             <div class="navbar-start">
                 <a class="navbar-item" th:href="@{/submit}">Link posten</a>
+                <a class="navbar-item" th:href="@{/register}">Registrieren</a>
             </div>
         </div>
     </nav>
@@ -29,6 +30,11 @@
             <article class="message is-success" th:if="${voted}">
                 <div class="message-body">
                     Vielen Dank für deine Stimme!
+                </div>
+            </article>
+            <article class="message is-success" th:if="${registered}">
+                <div class="message-body">
+                    Du bist jetzt registriert. Es gibt leider noch keinen Login...
                 </div>
             </article>
             <div class="box" th:each="link : ${links}">
