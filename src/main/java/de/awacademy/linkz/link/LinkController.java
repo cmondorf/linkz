@@ -58,4 +58,11 @@ public class LinkController {
         redirectAttributes.addAttribute("voted", true);
         return "redirect:/";
     }
+
+    @PostMapping("/delete/{linkId}")
+    public String delete(@PathVariable long linkId, RedirectAttributes redirectAttributes) {
+        linkRepository.deleteById(linkId);
+        redirectAttributes.addAttribute("deleted", true);
+        return "redirect:/";
+    }
 }

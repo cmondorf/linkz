@@ -32,6 +32,11 @@
                     Vielen Dank für deine Stimme!
                 </div>
             </article>
+            <article class="message is-success" th:if="${deleted}">
+                <div class="message-body">
+                    Der Link wurde gelöscht.
+                </div>
+            </article>
             <article class="message is-success" th:if="${registered}">
                 <div class="message-body">
                     Du bist jetzt registriert. Es gibt leider noch keinen Login...
@@ -61,6 +66,11 @@
                                 <strong th:text="${link.points}"></strong> Punkte
                             </p>
                         </div>
+                    </div>
+                    <div class="media-right">
+                        <form th:action="@{/delete/{linkId}(linkId=${link.id})}" method="post">
+                            <button type="submit" class="button is-danger is-small is-outlined">×</button>
+                        </form>
                     </div>
                 </article>
             </div>

@@ -20,11 +20,13 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model, @RequestParam(defaultValue = "false") boolean linkSubmitted,
                        @RequestParam(defaultValue = "false") boolean voted,
-                       @RequestParam(defaultValue = "false") boolean registered) {
+                       @RequestParam(defaultValue = "false") boolean registered,
+                       @RequestParam(defaultValue = "false") boolean deleted) {
         model.addAttribute("links", linkRepository.findAllByOrderByPointsDesc());
         model.addAttribute("linkSubmitted", linkSubmitted);
         model.addAttribute("voted", voted);
         model.addAttribute("registered", registered);
+        model.addAttribute("deleted", deleted);
         return "home";
     }
 }
