@@ -29,7 +29,8 @@ public class LinkController {
     }
 
     @PostMapping("/submit")
-    public String submit(@Valid @ModelAttribute("link") LinkDTO linkDTO, BindingResult bindingResult,
+    public String submit(@Valid @ModelAttribute("link") LinkDTO linkDTO,
+                         BindingResult bindingResult,
                          RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "submit";
@@ -48,8 +49,7 @@ public class LinkController {
 
         if (voteDTO.isUp()) {
             link.upvote();
-        }
-        else {
+        } else {
             link.downvote();
         }
 
